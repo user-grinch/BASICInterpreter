@@ -14,6 +14,12 @@ export enum class eReturnCodes {
 	ReadFailure,
 	WriteFailure,
 
+	// Var errors
+	VarFetchFailure,
+	VarFetchSuccess,
+	VarSetFailure,
+	VarSetSuccess,
+
 	// CMD errors
 	CommandFailure,
 	UnknownCommand,
