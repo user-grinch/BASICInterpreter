@@ -48,5 +48,11 @@
     <ClCompile Include="Vars.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Util.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Foo.bas" />
   </ItemGroup>
 </Project>

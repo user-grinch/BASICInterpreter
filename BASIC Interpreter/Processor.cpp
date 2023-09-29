@@ -1,6 +1,7 @@
 module Processor;
 
 import Commands;
+import Vars;
 
 eReturnCodes Processor::_Init()
 {
@@ -36,7 +37,11 @@ eReturnCodes Processor::Run() {
 			}
 		}
 
-		if (!found) {
+		// setup variables
+		if (e.cmd[0] == '$') {
+			varStore.SetVar(e);
+		} 
+		else if (!found) {
 			std::cerr << "Invalid command: " << e.cmd << std::endl;
 			return eReturnCodes::UnknownCommand;
 		}

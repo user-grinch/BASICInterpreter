@@ -1,5 +1,5 @@
 PRINT Started Hello World!
 NEWLINE
-LET x = 10
-PRINT Hello World!
+$x = 10
+PRINT X Is $x
 NEWLINE
