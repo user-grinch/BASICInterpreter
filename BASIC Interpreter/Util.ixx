@@ -23,8 +23,14 @@ export std::vector<std::string> GetWords(std::string s, char split) {
 	if (split != ' ') {
 		std::erase(s, ' ');
 	}
+
 	while (pos < s.size()) {
 		pos = s.find(split);
+
+		if (pos > s.size()) {
+			pos = s.find('\0');
+		}
+
 		res.push_back(s.substr(0, pos));
 		s.erase(0, pos + 1);
 	}

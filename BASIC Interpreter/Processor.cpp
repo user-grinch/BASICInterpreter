@@ -38,11 +38,11 @@ eReturnCodes Processor::Run() {
 		}
 
 		// setup variables
-		if (e.cmd[0] == '$') {
+		if (e.cmd[0] == VAR_PREFIX) {
 			varStore.SetVar(e);
 		} 
 		else if (!found) {
-			std::cerr << "Invalid command: " << e.cmd << std::endl;
+			std::cerr << "Invalid command: " << e.cmd << "on line: " << e.line << std::endl;
 			return eReturnCodes::UnknownCommand;
 		}
 	} 

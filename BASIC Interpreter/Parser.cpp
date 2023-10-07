@@ -31,7 +31,9 @@ eReturnCodes Parser::ParseCodeFile(commandstore_t& commandStore) {
 		++line;
 	}
 
-	PrettyPrint(commandStore);
+	if (DEBUG_INFO) {
+		PrettyPrint(commandStore);
+	}
 	return eReturnCodes::Success;
 }
 

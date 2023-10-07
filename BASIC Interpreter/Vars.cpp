@@ -6,7 +6,8 @@ VarStore varStore;
 
 eReturnCodes VarStore::GetValue(const std::string& name, any_t& value) {
 	for (auto& e : _data) {
-		if (name.compare(e.name.c_str())) {
+		if (e.name == name)
+		{
 			value = e.value;
 			return eReturnCodes::VarFetchSuccess;
 		}
@@ -22,7 +23,9 @@ eReturnCodes VarStore::SetValue(const std::string& name, any_t value) {
 
 eReturnCodes VarStore::GetVar(const std::string& name, std::string& val) {
 	any_t v;
-	varStore.GetValue(name, v);
+	if (varStore.GetValue(name, v) != eReturnCodes::VarFetchSuccess) {
+		return eReturnCodes::VarFetchFailure;
+	}
 
 	if (const auto pInt = std::get_if<int>(&v); pInt) {
 		val = std::to_string(*pInt);
@@ -34,14 +37,13 @@ eReturnCodes VarStore::GetVar(const std::string& name, std::string& val) {
 		val = std::get<std::string>(v);
 	}
 
-	return eReturnCodes::Success;
+	return eReturnCodes::VarFetchSuccess;
 }
 
 eReturnCodes VarStore::SetVar(CommandSpecification &spec) {
 	std::vector<std::string> words = GetWords(spec.args, '=');
 
-	auto new_logical_end = std::remove(spec.cmd.begin(), spec.cmd.end(), '$');
-	spec.cmd.erase(new_logical_end, spec.cmd.end());
+	spec.cmd.erase(std::remove(spec.cmd.begin(), spec.cmd.end(), VAR_PREFIX), spec.cmd.end());
 	// TODO: Separete number types
 	if (IsNumber(words[1])) {
 		varStore.SetValue(spec.cmd, std::stof(words[1]));

@@ -4,6 +4,8 @@ export module defines;
 import std;
 
 export constexpr std::uint32_t BUFFER_SIZE = 256;
+export constexpr char VAR_PREFIX = '$';
+export constexpr bool DEBUG_INFO = false;
 
 export enum class eReturnCodes {
 	// Generic
