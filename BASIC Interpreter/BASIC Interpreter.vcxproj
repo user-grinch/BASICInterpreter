@@ -29,6 +29,8 @@
     <ClCompile Include="Processor.cpp" />
     <ClCompile Include="Processor.ixx" />
     <ClCompile Include="Util.ixx" />
+    <ClCompile Include="ExprMgr.cpp" />
+    <ClCompile Include="ExprMgr.ixx" />
     <ClCompile Include="Vars.cpp" />
     <ClCompile Include="Vars.ixx" />
   </ItemGroup>

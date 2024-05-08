@@ -17,6 +17,13 @@ eReturnCodes VarStore::GetValue(const std::string& name, any_t& value) {
 }
 
 eReturnCodes VarStore::SetValue(const std::string& name, any_t value) {
+	for (auto& e : _data) {
+		if (e.name == name)
+		{
+			e.value = value;
+			return eReturnCodes::VarFetchSuccess;
+		}
+	}
 	_data.emplace_back(name, value);
 	return eReturnCodes::VarSetSuccess;
 }

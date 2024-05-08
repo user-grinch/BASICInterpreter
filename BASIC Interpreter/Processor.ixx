@@ -18,6 +18,9 @@ private:
 	* Fills commandRegistry with command definations
 	*/
 	eReturnCodes _Init();
+
+	bool IsOperator(char c);
+	void RemoveWhiteSpaces(std::string& str);
 public:
 	Processor() {}
 	~Processor() {}

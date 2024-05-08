@@ -1,8 +1,10 @@
+#include "include/exprtk.hpp"
 module;
-export module Vars;
+export module ExprMgr;
 
 import std;
 import defines;
+
 
 using any_t = std::variant<int, float, std::string>;
 
@@ -11,13 +13,11 @@ struct VarInfo {
 	any_t value;
 };
 
-/*
-* Variable store class
-* Store & Returns program variables
-*/
-export class VarStore {
+export class ExprMgr {
 private:
-	std::vector<VarInfo> _data;
+	exprtk::symbol_table<std::string> symbol_table;
+	exprtk::expression<std::string> expression;
+	exprtk::parser<std::string> parser;
 
 public:
 	eReturnCodes GetValue(const std::string& name, any_t& value);
@@ -27,4 +27,4 @@ public:
 	eReturnCodes SetVar(CommandSpecification &spec);
 };
 
-export extern VarStore varStore;
+export extern ExprMgr exprMgr;
